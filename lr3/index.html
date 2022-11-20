@@ -625,1039 +625,198 @@
 <a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">Collection</span>
 <a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>        <span class="n">fields</span> <span class="o">=</span> <span class="s2">&quot;__all__&quot;</span>
 </code></pre></div>
-<p><code>json
-"paths": {
-    "/api/auth/token/login/": {
-      "post": {
-        "operationId": "api_auth_token_login_create",
-        "description": "Use this endpoint to obtain user authentication token.",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/TokenCreate"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/TokenCreate"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/token/logout/": {
-      "post": {
-        "operationId": "api_auth_token_logout_create",
-        "description": "Use this endpoint to logout user (remove user authentication token).",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/": {
-      "get": {
-        "operationId": "api_auth_users_list",
-        "description": "",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "required": false,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "required": [
-                "count",
-                "results"
-              ],
-              "type": "object",
-              "properties": {
-                "count": {
-                  "type": "integer"
-                },
-                "next": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "previous": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "results": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/User"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "post": {
-        "operationId": "api_auth_users_create",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UserCreate"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/UserCreate"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/activation/": {
-      "post": {
-        "operationId": "api_auth_users_activation",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Activation"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Activation"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/me/": {
-      "get": {
-        "operationId": "api_auth_users_me_read",
-        "description": "",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "required": false,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "required": [
-                "count",
-                "results"
-              ],
-              "type": "object",
-              "properties": {
-                "count": {
-                  "type": "integer"
-                },
-                "next": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "previous": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "results": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/User"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "put": {
-        "operationId": "api_auth_users_me_update",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "patch": {
-        "operationId": "api_auth_users_me_partial_update",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "delete": {
-        "operationId": "api_auth_users_me_delete",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/resend_activation/": {
-      "post": {
-        "operationId": "api_auth_users_resend_activation",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/SendEmailReset"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/SendEmailReset"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/reset_password/": {
-      "post": {
-        "operationId": "api_auth_users_reset_password",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/SendEmailReset"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/SendEmailReset"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/reset_password_confirm/": {
-      "post": {
-        "operationId": "api_auth_users_reset_password_confirm",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/PasswordResetConfirm"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/PasswordResetConfirm"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/reset_username/": {
-      "post": {
-        "operationId": "api_auth_users_reset_username",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/SendEmailReset"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/SendEmailReset"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/reset_username_confirm/": {
-      "post": {
-        "operationId": "api_auth_users_reset_username_confirm",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UsernameResetConfirm"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/UsernameResetConfirm"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/set_password/": {
-      "post": {
-        "operationId": "api_auth_users_set_password",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/SetPassword"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/SetPassword"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/set_username/": {
-      "post": {
-        "operationId": "api_auth_users_set_username",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/SetUsername"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/SetUsername"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/auth/users/{id}/": {
-      "get": {
-        "operationId": "api_auth_users_read",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "put": {
-        "operationId": "api_auth_users_update",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "patch": {
-        "operationId": "api_auth_users_partial_update",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "delete": {
-        "operationId": "api_auth_users_delete",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "description": "A unique integer value identifying this user.",
-          "required": true,
-          "type": "integer"
-        }
-      ]
-    },
-    "/api/collection-photo/create": {
-      "post": {
-        "operationId": "api_collection-photo_create_create",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CollectionPhoto"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/CollectionPhoto"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/collection-photo/{id}": {
-      "get": {
-        "operationId": "api_collection-photo_read",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/CollectionPhoto"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "delete": {
-        "operationId": "api_collection-photo_delete",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }
-      ]
-    },
-    "/api/collections/": {
-      "get": {
-        "operationId": "api_collections_list",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/CollectionSerializerExpanded"
-              }
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/collections/create": {
-      "post": {
-        "operationId": "api_collections_create_create",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Collection"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Collection"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/collections/{id}": {
-      "get": {
-        "operationId": "api_collections_read",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Collection"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "put": {
-        "operationId": "api_collections_update",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Collection"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Collection"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "patch": {
-        "operationId": "api_collections_partial_update",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Collection"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/Collection"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "delete": {
-        "operationId": "api_collections_delete",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }
-      ]
-    },
-    "/api/colors/": {
-      "get": {
-        "operationId": "api_colors_list",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/keywords/": {
-      "get": {
-        "operationId": "api_keywords_list",
-        "description": "",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "required": false,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "required": [
-                "count",
-                "results"
-              ],
-              "type": "object",
-              "properties": {
-                "count": {
-                  "type": "integer"
-                },
-                "next": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "previous": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "results": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Keywords"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/likes/create": {
-      "post": {
-        "operationId": "api_likes_create_create",
-        "description": "",
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/LikePhoto"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/LikePhoto"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/api/likes/{id}": {
-      "get": {
-        "operationId": "api_likes_read",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/LikePhoto"
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "delete": {
-        "operationId": "api_likes_delete",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "204": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }
-      ]
-    },
-    "/api/search/": {
-      "get": {
-        "operationId": "api_search_list",
-        "description": "",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "required": false,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "required": [
-                "count",
-                "results"
-              ],
-              "type": "object",
-              "properties": {
-                "count": {
-                  "type": "integer"
-                },
-                "next": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "previous": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "results": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Photo"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "api"
-        ]
-      },
-      "parameters": []
-    },
-    "/photos/": {
-      "get": {
-        "operationId": "photos_list",
-        "description": "",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "required": false,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "required": [
-                "count",
-                "results"
-              ],
-              "type": "object",
-              "properties": {
-                "count": {
-                  "type": "integer"
-                },
-                "next": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "previous": {
-                  "type": "string",
-                  "format": "uri",
-                  "x-nullable": true
-                },
-                "results": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Photo"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "photos"
-        ]
-      },
-      "parameters": []
-    }
-  },</code></p>
+<h1 id="api">API</h1>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>HTTP request</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="ApiApi.md#api_auth_token_login_create"><strong>api_auth_token_login_create</strong></a></td>
+<td><strong>POST</strong> /api/auth/token/login/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_token_logout_create"><strong>api_auth_token_logout_create</strong></a></td>
+<td><strong>POST</strong> /api/auth/token/logout/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_activation"><strong>api_auth_users_activation</strong></a></td>
+<td><strong>POST</strong> /api/auth/users/activation/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_create"><strong>api_auth_users_create</strong></a></td>
+<td><strong>POST</strong> /api/auth/users/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_delete"><strong>api_auth_users_delete</strong></a></td>
+<td><strong>DELETE</strong> /api/auth/users/{id}/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_list"><strong>api_auth_users_list</strong></a></td>
+<td><strong>GET</strong> /api/auth/users/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_me_delete"><strong>api_auth_users_me_delete</strong></a></td>
+<td><strong>DELETE</strong> /api/auth/users/me/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_me_partial_update"><strong>api_auth_users_me_partial_update</strong></a></td>
+<td><strong>PATCH</strong> /api/auth/users/me/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_me_read"><strong>api_auth_users_me_read</strong></a></td>
+<td><strong>GET</strong> /api/auth/users/me/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_me_update"><strong>api_auth_users_me_update</strong></a></td>
+<td><strong>PUT</strong> /api/auth/users/me/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_partial_update"><strong>api_auth_users_partial_update</strong></a></td>
+<td><strong>PATCH</strong> /api/auth/users/{id}/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_read"><strong>api_auth_users_read</strong></a></td>
+<td><strong>GET</strong> /api/auth/users/{id}/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_resend_activation"><strong>api_auth_users_resend_activation</strong></a></td>
+<td><strong>POST</strong> /api/auth/users/resend_activation/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_reset_password"><strong>api_auth_users_reset_password</strong></a></td>
+<td><strong>POST</strong> /api/auth/users/reset_password/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_reset_password_confirm"><strong>api_auth_users_reset_password_confirm</strong></a></td>
+<td><strong>POST</strong> /api/auth/users/reset_password_confirm/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_reset_username"><strong>api_auth_users_reset_username</strong></a></td>
+<td><strong>POST</strong> /api/auth/users/reset_username/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_reset_username_confirm"><strong>api_auth_users_reset_username_confirm</strong></a></td>
+<td><strong>POST</strong> /api/auth/users/reset_username_confirm/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_set_password"><strong>api_auth_users_set_password</strong></a></td>
+<td><strong>POST</strong> /api/auth/users/set_password/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_set_username"><strong>api_auth_users_set_username</strong></a></td>
+<td><strong>POST</strong> /api/auth/users/set_username/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_auth_users_update"><strong>api_auth_users_update</strong></a></td>
+<td><strong>PUT</strong> /api/auth/users/{id}/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_collection_photo_create_create"><strong>api_collection_photo_create_create</strong></a></td>
+<td><strong>POST</strong> /api/collection-photo/create</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_collection_photo_delete"><strong>api_collection_photo_delete</strong></a></td>
+<td><strong>DELETE</strong> /api/collection-photo/{id}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_collection_photo_read"><strong>api_collection_photo_read</strong></a></td>
+<td><strong>GET</strong> /api/collection-photo/{id}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_collections_create_create"><strong>api_collections_create_create</strong></a></td>
+<td><strong>POST</strong> /api/collections/create</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_collections_delete"><strong>api_collections_delete</strong></a></td>
+<td><strong>DELETE</strong> /api/collections/{id}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_collections_list"><strong>api_collections_list</strong></a></td>
+<td><strong>GET</strong> /api/collections/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_collections_partial_update"><strong>api_collections_partial_update</strong></a></td>
+<td><strong>PATCH</strong> /api/collections/{id}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_collections_read"><strong>api_collections_read</strong></a></td>
+<td><strong>GET</strong> /api/collections/{id}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_collections_update"><strong>api_collections_update</strong></a></td>
+<td><strong>PUT</strong> /api/collections/{id}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_colors_list"><strong>api_colors_list</strong></a></td>
+<td><strong>GET</strong> /api/colors/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_keywords_list"><strong>api_keywords_list</strong></a></td>
+<td><strong>GET</strong> /api/keywords/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_likes_create_create"><strong>api_likes_create_create</strong></a></td>
+<td><strong>POST</strong> /api/likes/create</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_likes_delete"><strong>api_likes_delete</strong></a></td>
+<td><strong>DELETE</strong> /api/likes/{id}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_likes_read"><strong>api_likes_read</strong></a></td>
+<td><strong>GET</strong> /api/likes/{id}</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ApiApi.md#api_search_list"><strong>api_search_list</strong></a></td>
+<td><strong>GET</strong> /api/search/</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="PhotosApi.md#photos_list"><strong>photos_list</strong></a></td>
+<td><strong>GET</strong> /photos/</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 
 
